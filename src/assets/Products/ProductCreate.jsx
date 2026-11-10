@@ -62,7 +62,17 @@ function ProductCreate() {
     
 
 
+const [singlimage , setsingleimage] = useState();
+const [singleimageprev , setsingleimageprev] = useState();
 
+const handleSinglfile = (e) => {
+
+  const file = e.target.files[0];
+  setsingleimage(file);
+
+  const imagepreview = URL.createObjectURL(file);
+  setsingleimageprev(imagepreview)
+}
 
   const colors = [
   // Red
@@ -251,6 +261,7 @@ function ProductCreate() {
         formdata.append("IsFeatured" , formfields.IsFeatured)
         formdata.append("ProductWeight" , formfields.ProductWeight)
         formdata.append("ProductShipCharges" , formfields.ProductShipCharges)
+        formdata.append('singleimage' , singlimage)
 
 
         images.forEach((files) => (
@@ -502,11 +513,32 @@ function ProductCreate() {
       </div>
     </div>
 
+     <div className="row mt-3">
+    <div className="col-12 d-flex gap-2 position-relative align-items-center justify-content-center
+    flex-column" style={{
+      width: "100%" , height: "300px" , backgroundColor: "white"
+    }}>
+    <label htmlFor="">Select Main Image</label>
+    <div className='d-flex align-items-center justify-content-center' style={{
+      width: "300px" , height: "300px" , backgroundColor: "white", border: "1px solid rgba(0,0,0,0.3)",
+      borderRadius: "10px"
+    }}>
+      <img src={singleimageprev}
+       alt="" width={200} height={200} style={{objectFit: "contain"}}/>
+
+    </div>
+    <input type="file" accept='image/*' onChange={handleSinglfile} />
+      </div>
+    </div>
+
+
 
   {/* Images */}
  
  <div className="row mt-3">
+  <label htmlFor="" className='text-bold'>Select All Images</label>
     <div className="col-12 productimage d-flex flex-wrap gap-3">
+      
      {
       images?.length !== 0 && images.map((pictures , index) => (
         <div className='imagewrapper' key={index}>
