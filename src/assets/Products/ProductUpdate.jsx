@@ -66,6 +66,20 @@ function ProductUpdate() {
 
    const [images , setimages] = useState([]);
 
+   const [singlimage , setsingleimage] = useState();
+   const [singleimageprev , setsingleimageprev] = 
+   useState(`${import.meta.env.VITE_IMAGE_LINK}${localStorage.getItem('ProductImages1')}`);
+   
+   const handleSinglfile = (e) => {
+   
+     const file = e.target.files[0];
+     setsingleimage(file);
+   
+     const imagepreview = URL.createObjectURL(file);
+     setsingleimageprev(imagepreview)
+   }
+   
+
 
   const colors = [
   // Red
@@ -160,6 +174,8 @@ setloading(false)
     }
 
 
+
+
 //      const oldimages = [...listimages];
 
 //   const newimages = [...getuploadedimage];
@@ -238,6 +254,30 @@ const handleFiles = (e) => {
     })
     
   }
+
+      const handleMainImage = async () => {
+
+        try {
+
+          const formdata = new FormData();
+
+          formdata.append('image' , singlimage);
+
+          const res = await axiosInstance.put(`/api/admin/products/product-singleimage/${productid}` , formdata);
+
+          if (res.data.success) {
+
+            alert('Image Up')
+          }
+          
+        } catch (error) {
+
+          console.log(error)
+          
+        }
+
+
+    }
 
     useEffect(() => {
 
@@ -559,6 +599,25 @@ const handleFiles = (e) => {
       />
     </div>
    </div>
+
+    <div className="row mt-3">
+    <div className="col-12 d-flex gap-2 position-relative align-items-center justify-content-center
+    flex-column" style={{
+      width: "100%" , height: "300px" , backgroundColor: "white"
+    }}>
+    <label htmlFor="">Select Main Image</label>
+    <div className='d-flex align-items-center justify-content-center' style={{
+      width: "300px" , height: "300px" , backgroundColor: "white", border: "1px solid rgba(0,0,0,0.3)",
+      borderRadius: "10px"
+    }}>
+      <img src={singleimageprev}
+       alt="" width={200} height={200} style={{objectFit: "contain"}}/>
+
+    </div>
+    <input type="file" accept='image/*' onChange={handleSinglfile} />
+    <Button className='updateimagesingle' onClick={handleMainImage}>Update Image</Button>
+      </div>
+    </div>
 
    <div className="row mt-3">
     <div className="col-12 d-flex flex-wrap gap-2 position-relative">

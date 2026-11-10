@@ -130,7 +130,8 @@ axiosInstance.delete(`/api/admin/products/product-delete/${id}`).then(() => {
  }
 
  const handleUpdate = (id,ProductName,ProductDescription,ProductCategory,ProductSubCategory,ProductBrand,
-  ProductOldPrice,ProductNewPrice,ProductsInStock,ProductRating,ProductColor,ProductImages4,ProductWeight,ProductShipCharges) => {
+  ProductOldPrice,ProductNewPrice,ProductsInStock,ProductRating,ProductColor,ProductImages4,ProductWeight,
+  ProductShipCharges,ProductImages1) => {
 
     const productimagesstring = ProductImages4 ? JSON.stringify(ProductImages4) : null;
 
@@ -148,6 +149,7 @@ axiosInstance.delete(`/api/admin/products/product-delete/${id}`).then(() => {
     localStorage.setItem('ProductImages4' , productimagesstring)
     localStorage.setItem('ProductWeight' , ProductWeight)
     localStorage.setItem('ProductShipCharges' , ProductShipCharges)
+    localStorage.setItem('ProductImages1' , ProductImages1)
 
 
 
@@ -265,7 +267,7 @@ axiosInstance.delete(`/api/admin/products/product-delete/${id}`).then(() => {
         <Button 
         onClick={() => handleUpdate(item.id,item.ProductName,item.ProductDescription,item.ProductCategory,item.ProductSubCategory,
         item.ProductBrand,item.ProductOldPrice,item.ProductNewPrice,item.ProductsInStock,item.ProductRating,item.ProductColor,
-        item.ProductImages4,item.ProductWeight, item.ProductShipCharges
+        item.ProductImages4,item.ProductWeight, item.ProductShipCharges,item.ProductImages1
         )}>
         <Link to={'/productupdate'}><FaEdit className='btnedit'/></Link></Button>
         <Button 
