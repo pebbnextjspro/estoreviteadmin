@@ -148,10 +148,11 @@ const handleSinglfile = (e) => {
   ProductsInStock: '',
   ProductRating: '',
   ProductColor: 'Select Color',
+  ProductImages2: '',
   ProductImages4: '',
   IsFeatured: '',
   ProductWeight: '',
-  ProductShipCharges: ''
+  ProductShipCharges: '',
 });
 
 
@@ -258,10 +259,12 @@ const handleSinglfile = (e) => {
         formdata.append("ProductsInStock" , formfields.ProductsInStock)
         formdata.append("ProductRating" , formfields.ProductRating)
         formdata.append("ProductColor" , formfields.ProductColor)
+        formdata.append('ProductImages2' , formfields.ProductImages2)
         formdata.append("IsFeatured" , formfields.IsFeatured)
         formdata.append("ProductWeight" , formfields.ProductWeight)
         formdata.append("ProductShipCharges" , formfields.ProductShipCharges)
         formdata.append('singleimage' , singlimage)
+        
 
 
         images.forEach((files) => (
@@ -473,6 +476,24 @@ const handleSinglfile = (e) => {
         onChange={handleChange}
         className="form-control"
         required
+      />
+    </div>
+
+   
+  </div>
+
+    {/* Short Desc */}
+  <div className="row mt-3">
+    <div className="col-12">
+      <label className="form-label">Product Short Description</label>
+      <textarea
+        type="text"
+        name="ProductImages2"
+        value={formfields.ProductImages2}
+        onChange={handleChange}
+        className="form-control"
+        required
+        maxLength={250}
       />
     </div>
 

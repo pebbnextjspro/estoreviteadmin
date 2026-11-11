@@ -680,7 +680,7 @@ const handleFiles = (e) => {
      {
       listimages?.length !== 0 && listimages.map((pictures , index) => (
         <div className='imagewrapper' key={index}>
-  <img src={`http://localhost:4000/uploads/${pictures}`} alt="" />
+  <img src={`${import.meta.env.VITE_IMAGE_LINK}${pictures}`} alt="" />
   <div className='crossbtn'>
 <RxCross1 onClick={() => handleDeleteImageNew(pictures)}/>
   </div>
