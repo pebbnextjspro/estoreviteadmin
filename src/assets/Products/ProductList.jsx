@@ -233,7 +233,7 @@ axiosInstance.delete(`/api/admin/products/product-delete/${id}`).then(() => {
         <td>{item.SrNo}</td>
         <td>
           <div className="col1 d-flex gap-3">
-            <img src={`${BasedAPI}/uploads/${item.ProductImages4[0]}`} alt="" width="50" height="50" />
+            <img src={`${BasedAPI}/uploads/${item.ProductImages1}`} alt="" width="50" height="50" />
             <div className="d-flex flex-column">
               <span className='single-line'>{item.ProductName}</span>
               <span className='single-line'>{item.ProductDescription}</span>
